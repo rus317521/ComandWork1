@@ -19,7 +19,9 @@ public class Main {
                 System.out.println("Выберите товар и количество или введите `end`");
                 String input = scanner.nextLine();
                 if ("end".equals(input)) {
-                    if (sumProducts > 0) {
+                    for (int i = 0; i < products.length; i++)
+                    {sumProducts = sumProducts + productsCount[i]*prices[i];}
+                    if (sumProducts >= 0) {
                         System.out.println("Ваша корзина:");
                         for (int j = 0; j < products.length; j++) {
                             if (productsCount[j] > 0) {
@@ -40,17 +42,27 @@ public class Main {
                     continue;
                 }
                 int number = Integer.parseInt(parts[0]) - 1;
-                if (Integer.parseInt(parts[0]) > 10 || Integer.parseInt(parts[0]) < 1 || Integer.parseInt(parts[1]) < 1) {
-                    System.out.println("Данные введены некорректно. Первое число(номер товара) должен быть целым числом в диапазоне от 1 до 10. А второе число (количество товара) должно быть целым положительным числом");
+                if (Integer.parseInt(parts[0]) > 10 || Integer.parseInt(parts[0]) < 1
+                        // || Integer.parseInt(parts[1]) < 1
+                ) {
+                    System.out.println("Данные введены некорректно. Первое число(номер товара) должен быть целым числом в диапазоне от 1 до 10. А второе число (количество товара) должно быть целым числом");
                     continue;
                 }
+
                 int count = Integer.parseInt(parts[1]);
-                productsCount[number] = productsCount[number] + count;
-                sumProducts = sumProducts + prices[number] * count;
-            } catch (NumberFormatException e) {
+                if (count!=0)
+                {productsCount[number] = productsCount[number] + count;
+                //sumProducts = sumProducts + prices[number] * count;
+
+                    }
+                else {productsCount[number] = 0; }
+            }
+
+            catch (NumberFormatException e) {
                 System.out.println("Данные введены некорректно. Необходимо ввести два целых положительных числа!");
                 continue;
             }
+
         }
 
     }
