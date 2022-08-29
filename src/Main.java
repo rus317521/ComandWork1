@@ -30,6 +30,23 @@ public class Main {
                 try {
                 String input = scanner.nextLine();
                 if ("end".equals(input)) {
+
+                    for (int i = 0; i < products.length; i++) {
+                        sumProducts = sumProducts + productsCount[i] * prices[i];
+                    }
+                    if (sumProducts >= 0) {
+                        System.out.println("Ваша корзина:");
+                        for (int j = 0; j < products.length; j++) {
+                            if (productsCount[j] > 0) {
+                                System.out.println(products[j] + " " + productsCount[j] + " шт " + prices[j] + " руб/шт " + prices[j] * productsCount[j] + " руб. в сумме");
+                            }
+                            ;
+                        }
+                        ;
+                        System.out.println("Итого: " + sumProducts + " руб");
+                    }
+                    ;
+
                     break;
                 }
 
@@ -47,10 +64,28 @@ public class Main {
                 } else {
                     productsCount[number] += count;
                 }
+                number = Integer.parseInt(parts[0]) - 1;
+                if (Integer.parseInt(parts[0]) > 10 || Integer.parseInt(parts[0]) < 1
+                    // || Integer.parseInt(parts[1]) < 1
+                ) {
+                    System.out.println("Данные введены некорректно. Первое число(номер товара) должен быть целым числом в диапазоне от 1 до 10. А второе число (количество товара) должно быть целым числом");
+                    continue;
+                }
+
+                count = Integer.parseInt(parts[1]);
+                if (count != 0) {
+                    productsCount[number] = productsCount[number] + count;
+                    //sumProducts = sumProducts + prices[number] * count;
+
+                } else {
+                    productsCount[number] = 0;
+                }
+
             } catch (NumberFormatException e) {
                 System.out.println("Данные введены некорректно. Необходимо ввести два целых положительных числа!");
                 continue;
             }
+
         }
 
         System.out.println("Ваша корзина:");
