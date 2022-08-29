@@ -22,7 +22,7 @@ public class Main {
                     for (int i = 0; i < products.length; i++) {
                         sumProducts = sumProducts + productsCount[i] * prices[i];
                     }
-                    if (sumProducts >= 0) {
+f                    if (sumProducts >= 0) {
                         System.out.println("Ваша корзина:");
                         for (int j = 0; j < products.length; j++) {
                             if (productsCount[j] > 0) {
